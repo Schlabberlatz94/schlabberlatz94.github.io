@@ -1,10 +1,13 @@
 
-let myMap = L.map("mapdiv");
+let myMap = L.map("mapdiv"); //http://leafletjs.com/reference-1.3.0.html#map-l-map
 let myLayers = {
-    osm : L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"),
-    geolandbasemap : L.tileLayer("https://{s}.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png", {
+    osm : L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"), //http://leafletjs.com/reference-1.3.0.html#tilelayer-l-tilelayer
         subdomains : ["maps","maps1","maps2","maps3","maps4"], 
-        attribution : "Datenquelle: <a href='https://www.basemap.at'>basemap.at</a>",
+        attribution : "Datenquelle: <a href='https://www.basemap.at'>basemap.at</a>", 
+
+    geolandbasemap : L.tileLayer("https://{s}.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png", {
+        subdomains : ["maps","maps1","maps2","maps3","maps4"], //http://leafletjs.com/reference-1.3.0.html#tilelayer-subdomains
+        attribution : "Datenquelle: <a href='https://www.basemap.at'>basemap.at</a>", //http://leafletjs.com/reference-1.3.0.html#layer-attribution
     }
 ),
     bmapoverlay : L.tileLayer("https://{s}.wien.gv.at/basemap/bmapoverlay/normal/google3857/{z}/{y}/{x}.png", { 
@@ -29,9 +32,9 @@ let myLayers = {
     }
 ),
 }
-myMap.addLayer(myLayers.geolandbasemap);
+myMap.addLayer(myLayers.geolandbasemap); //http://leafletjs.com/reference-1.3.0.html#layergroup-addlayer
 
-let myMapControl = L.control.layers({
+let myMapControl = L.control.layers({ //http://leafletjs.com/reference-1.3.0.html#control-layers-l-control-layers
     "Openstreetmap" : myLayers.osm,
     "basemap.at Grundkarte" : myLayers.geolandbasemap,
     "basemap.at Overlay" : myLayers.bmapoverlay,
@@ -40,9 +43,19 @@ let myMapControl = L.control.layers({
     "basemap. at Orthofoto" : myLayers.bmaporthofoto30cm, 
 },{
     "basemap.at Overlay" : myLayers.bmapoverlay,
+    
 });
-myMap.addControl(myMapControl);
+
+myMap.addControl(myMapControl); //http://leafletjs.com/reference-1.3.0.html#map-addcontrol
+
+myMap.setView([47.267,11.383], 11); //http://leafletjs.com/reference-1.3.0.html#map-setview
+
+L.control.layers({collapsed: false});
+// Sollte eigentlich darüber gehen file:///C:/Users/csav5986/Desktop/schlabberlatz94.github.io/basemap.html
 
 
-
-myMap.setView([47.267,11.383], 11);
+L.control.scale({imperial: false, maxWidth: 200, position: "bottomleft"}).addTo(myMap)
+// verwendete Methode: file:///C:/Users/csav5986/Desktop/schlabberlatz94.github.io/basemap.html
+// verwendete Optionen: file:///C:/Users/csav5986/Desktop/schlabberlatz94.github.io/basemap.html
+// file:///C:/Users/csav5986/Desktop/schlabberlatz94.github.io/basemap.html
+// file:///C:/Users/csav5986/Desktop/schlabberlatz94.github.io/basemap.html
