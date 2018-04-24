@@ -44,14 +44,14 @@ let myMapControl = L.control.layers({ //http://leafletjs.com/reference-1.3.0.htm
 },{
     "basemap.at Overlay" : myLayers.bmapoverlay,
     
-});
+},{collapsed: false}); // Sollte eigentlich darüber gehen file:///C:/Users/csav5986/Desktop/schlabberlatz94.github.io/basemap.html
 
 myMap.addControl(myMapControl); //http://leafletjs.com/reference-1.3.0.html#map-addcontrol
 
 myMap.setView([47.267,11.383], 11); //http://leafletjs.com/reference-1.3.0.html#map-setview
 
-L.control.layers({collapsed: false});
-// Sollte eigentlich darüber gehen file:///C:/Users/csav5986/Desktop/schlabberlatz94.github.io/basemap.html
+
+
 
 
 L.control.scale({imperial: false, maxWidth: 200, position: "bottomleft"}).addTo(myMap)
