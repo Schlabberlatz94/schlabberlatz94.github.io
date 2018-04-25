@@ -1,5 +1,6 @@
 
 let myMap = L.map("mapdiv"); //http://leafletjs.com/reference-1.3.0.html#map-l-map
+let markerGroup = L.featureGroup();
 let myLayers = {
     osm : L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"), //http://leafletjs.com/reference-1.3.0.html#tilelayer-l-tilelayer
         subdomains : ["maps","maps1","maps2","maps3","maps4"], 
@@ -33,6 +34,7 @@ let myLayers = {
 ),
 }
 myMap.addLayer(myLayers.geolandbasemap); //http://leafletjs.com/reference-1.3.0.html#layergroup-addlayer
+myMap.addLayer(markerGroup);
 
 let myMapControl = L.control.layers({ //http://leafletjs.com/reference-1.3.0.html#control-layers-l-control-layers
     "Openstreetmap" : myLayers.osm,
@@ -43,6 +45,7 @@ let myMapControl = L.control.layers({ //http://leafletjs.com/reference-1.3.0.htm
     "basemap. at Orthofoto" : myLayers.bmaporthofoto30cm, 
 },{
     "basemap.at Overlay" : myLayers.bmapoverlay,
+    "Universität IBK": markerGroup, 
     
 },{
     collapsed: false
@@ -67,14 +70,29 @@ L.control.scale({
 const uni = [47.264, 11.385];
 const usi = [47.257, 11.356];
 const technik = [47.263, 11.343];
+const igls = [47.230, 11.408];
+const patscherkofl = [47.208, 11.460];
+const patscherkoflPic = "https://www.tirol.gv.at/umwelt/luft/messnetz-galerie-webcams/livebilder/"
+    
 const markerOptions = {
     title: "Universität Innsbruck",
     opacity: 0.7,
     draggable: true
-}
-L.marker(uni, markerOptions).addTo(myMap);
-    // fügt einen Marker an der gewünschten Stelle ein
+};
+L.marker(uni, markerOptions).addTo(markerGroup);
+L.marker(usi, markerOptions).addTo(markerGroup);
+L.marker(technik, markerOptions).addTo(markerGroup);  // fügt einen Marker an der gewünschten Stelle ein
 
-L.marker(usi, markerOptions).addTo(myMap);
-L.marker(technik, markerOptions).addTo(myMap);
-myMap.setView(uni, 13);
+L.marker(igls,{title: "Igls", opacity: 0.7}).addTo(markerGroup);
+let patscherkoflMarker = L.marker(patscherkofl, {title: "Patscherkofel"}).addTo(markerGroup);
+patscherkoflMarker.bindPopup("<p>Patscherkofl von der Nordkette aus</p><img style='width:200px' src='https://apps.tirol.gv.at/luft/nordkette.jpg' alt='Patscherkofel' />");
+
+let lift = L.polyline([igls, patscherkofl], {
+    color: 'red'
+});
+myMap.addLayer(lift)
+
+let uniPolygon = L.polygon([uni, usi, technik]);
+myMap.addLayer(uniPolygon);
+
+myMap.fitBounds(markerGroup.getBounds()); // Zentriert die drei Marker in einem neuen Ausschnitt
