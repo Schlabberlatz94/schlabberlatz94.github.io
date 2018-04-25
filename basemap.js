@@ -55,7 +55,7 @@ myMap.setView([47.267,11.383], 11); //http://leafletjs.com/reference-1.3.0.html#
 
 
 L.control.scale({imperial: false, maxWidth: 200, position: "bottomleft"}).addTo(myMap)
-// verwendete Methode: file:///C:/Users/csav5986/Desktop/schlabberlatz94.github.io/basemap.html
-// verwendete Optionen: file:///C:/Users/csav5986/Desktop/schlabberlatz94.github.io/basemap.html
-// file:///C:/Users/csav5986/Desktop/schlabberlatz94.github.io/basemap.html
-// file:///C:/Users/csav5986/Desktop/schlabberlatz94.github.io/basemap.html
+// verwendete Methode: http://leafletjs.com/reference-1.3.0.html#control-scale-l-control-scale
+// verwendete Optionen: http://leafletjs.com/reference-1.3.0.html#control-scale-maxwidth
+// http://leafletjs.com/reference-1.3.0.html#control-scale-metric
+// http://leafletjs.com/reference-1.3.0.html#control-scale-position
