@@ -2,8 +2,8 @@
 let myMap = L.map("mapdiv"); //http://leafletjs.com/reference-1.3.0.html#map-l-map
 let myLayers = {
     osm : L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"), //http://leafletjs.com/reference-1.3.0.html#tilelayer-l-tilelayer
-        subdomains : ["maps","maps1","maps2","maps3","maps4"], 
-        attribution : "Datenquelle: <a href='https://www.basemap.at'>basemap.at</a>", 
+        subdomains : ["a","b","c"], 
+        attribution : "Datenquelle: <a href=openstreetmap.org</a>", 
 
     geolandbasemap : L.tileLayer("https://{s}.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png", {
         subdomains : ["maps","maps1","maps2","maps3","maps4"], //http://leafletjs.com/reference-1.3.0.html#tilelayer-subdomains
