@@ -86,6 +86,7 @@ const markerOptions = {
     title: "wetterstation",
     opacity: 0.7,
 };
+
 let GehrenspitzeMarker = L.marker(Gehrenspitze, {title: "Gehrenspitze"}).addTo(markerGroup);
 GehrenspitzeMarker.bindPopup("<p>Gehrenspitze </br> Temperatur 0.6°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/puitegg.png' alt='Gehrenspitze' />");
 
