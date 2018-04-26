@@ -88,97 +88,97 @@ const markerOptions = {
 };
 
 let GehrenspitzeMarker = L.marker(Gehrenspitze, {title: "Gehrenspitze"}).addTo(markerGroup);
-GehrenspitzeMarker.bindPopup("<p>Gehrenspitze </br> Temperatur 0.6°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/puitegg.png' alt='Gehrenspitze' />");
+GehrenspitzeMarker.bindPopup("<p>Gehrenspitze </br> Temperatur 0.6°C </br> 26.04.2018 </br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/puitegg.png'>Mehr Wetterdaten</a></p>");
 
 let HafelekarMarker = L.marker(Hafelekar, {title: "Hafelekar"}).addTo(markerGroup);
-HafelekarMarker.bindPopup("<p>Hafelekar </br> Temperatur 1.6°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/seegrube.png' alt='Hafelekar' />");
+HafelekarMarker.bindPopup("<p>Hafelekar </br> Temperatur 1.6°C </br> 26.04.2018 </br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/seegrube.png'>Mehr Wetterdaten</a></p>");
 
 let HoheMundeGipfelMarker = L.marker(HoheMundeGipfel, {title: "Hohe Munde Gipfel"}).addTo(markerGroup);
-HoheMundeGipfelMarker.bindPopup("<p>Hohe Munde Gipfel </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/woche/hohemunde.png' alt='Hohe Munde Gipfel' />");
+HoheMundeGipfelMarker.bindPopup("<p>Hohe Munde Gipfel </br> 26.04.2018 </br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/woche/hohemunde.png' >Mehr Wetterdaten</a></p>");
 
 let HoheMundeWindstationMarker = L.marker(HoheMundeWindstation, {title: "Hohe Munde Windstation"}).addTo(markerGroup);
-HoheMundeWindstationMarker.bindPopup("<p>Hohe Munde Windstation </br> Temperatur -4.1°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/rauthhuette.png' alt='Hohe Munde Windstation' />");
+HoheMundeWindstationMarker.bindPopup("<p>Hohe Munde Windstation </br> Temperatur -4.1°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/rauthhuette.png' >Mehr Wetterdaten</a></p>");
 
 let NassereithWannigMarker = L.marker(NassereithWannig, {title: "Nassereith Wannig"}).addTo(markerGroup);
-NassereithWannigMarker.bindPopup("<p>Nassereith Wannig </br> Temperatur -1.2°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/nassereith.png' alt='Nassereith Wannig' />");
+NassereithWannigMarker.bindPopup("<p>Nassereith Wannig </br> Temperatur -1.2°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/nassereith.png' >Mehr Wetterdaten</a></p>");
 
 let NassereitherAlmMarker = L.marker(NassereitherAlm, {title: "Nassereither Alm"}).addTo(markerGroup);
-NassereitherAlmMarker.bindPopup("<p>Nassereither Alm </br> Temperatur 4°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/nassereith.png' alt='Nassereither Alm' />");
+NassereitherAlmMarker.bindPopup("<p>Nassereither Alm </br> Temperatur 4°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/nassereith.png' >Mehr Wetterdaten</a></p>");
 
 let PuiteggMarker = L.marker(Puitegg, {title: "Puitegg"}).addTo(markerGroup);
-PuiteggMarker.bindPopup("<p>Puitegg </br> Temperatur 5.3°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/puitegg.png' alt='Puitegg' />");
+PuiteggMarker.bindPopup("<p>Puitegg </br> Temperatur 5.3°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/puitegg.png' >Mehr Wetterdaten</a></p>");
 
 let RauthhütteMarker = L.marker(Rauthhütte, {title: "Rauthhütte"}).addTo(markerGroup);
-RauthhütteMarker.bindPopup("<p>Rauthhütte </br> Temperatur 11.7°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/rauthhuette.png' alt='Rauthhütte' />");
+RauthhütteMarker.bindPopup("<p>Rauthhütte </br> Temperatur 11.7°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/rauthhuette.png' >Mehr Wetterdaten</a></p>");
 
 let RosshütteWindstationMarker = L.marker(RosshütteWindstation, {title: "Rosshütte Windstation"}).addTo(markerGroup);
-RosshütteWindstationMarker.bindPopup("<p>Rosshütte Windstation </br> Temperatur 4.1°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/rosshuette.png' alt='Rosshütte Windstation' />");
+RosshütteWindstationMarker.bindPopup("<p>Rosshütte Windstation </br> Temperatur 4.1°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/rosshuette.png' >Mehr Wetterdaten</a></p>");
 
 let SeegrubeMarker = L.marker(Seegrube, {title: "Seegrube"}).addTo(markerGroup);
-SeegrubeMarker.bindPopup("<p>Seegrube </br> Temperatur 3.1°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/seegrube.png' alt='Seegrube' />");
+SeegrubeMarker.bindPopup("<p>Seegrube </br> Temperatur 3.1°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/seegrube.png' >Mehr Wetterdaten</a></p>");
 
 let DalfazkammMarker = L.marker(Dalfazkamm, {title: "Dalfazkamm"}).addTo(markerGroup);
-DalfazkammMarker.bindPopup("<p>Dalfazkamm </br> Temperatur 0.4°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/erfurterhuette.png' alt='Dalfazkamm' />");
+DalfazkammMarker.bindPopup("<p>Dalfazkamm </br> Temperatur 0.4°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/erfurterhuette.png' >Mehr Wetterdaten</a></p>");
 
 let ErfurterhütteMarker = L.marker(Erfurterhütte, {title: "Erfurterhütte"}).addTo(markerGroup);
-ErfurterhütteMarker.bindPopup("<p>Erfurterhütte </br> Temperatur 2.4°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/erfurterhuette.png' alt='Erfurterhütte' />");
+ErfurterhütteMarker.bindPopup("<p>Erfurterhütte </br> Temperatur 2.4°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/erfurterhuette.png' >Mehr Wetterdaten</a></p>");
 
 let AgetwoadMarker = L.marker(Agetwoad, {title: "Agetwoad"}).addTo(markerGroup);
-AgetwoadMarker.bindPopup("<p>Agetwoad </br> Temperatur 1.5°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/agetwoad.png' alt='Agetwoad' />");
+AgetwoadMarker.bindPopup("<p>Agetwoad </br> Temperatur 1.5°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/agetwoad.png' >Mehr Wetterdaten</a></p>");
 
 let BreiterGrieskogelSchneestationMarker = L.marker(BreiterGrieskogelSchneestation, {title: "Breiter Grieskogel Schneestation"}).addTo(markerGroup);
-BreiterGrieskogelSchneestationMarker.bindPopup("<p>Breiter Grieskogel Schneestation </br> Temperatur 1.1°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/breiter_grieskogel.png' alt='Breiter Grieskogel Schneestation' />");
+BreiterGrieskogelSchneestationMarker.bindPopup("<p>Breiter Grieskogel Schneestation </br> Temperatur 1.1°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/breiter_grieskogel.png' >Mehr Wetterdaten</a></p>");
 
 let BreiterGrieskogelWindstationMarker = L.marker(BreiterGrieskogelWindstation, {title: "Breiter Grieskogel Windstation"}).addTo(markerGroup);
-BreiterGrieskogelWindstationMarker.bindPopup("<p>Breiter Grieskogel Windstation </br> Temperatur -3.4°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/breiter_grieskogel.png' alt='Breiter Grieskogel Windstation' />");
+BreiterGrieskogelWindstationMarker.bindPopup("<p>Breiter Grieskogel Windstation </br> Temperatur -3.4°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/breiter_grieskogel.png' >Mehr Wetterdaten</a></p>");
 
 let FalkaunsalpeMarker = L.marker(Falkaunsalpe, {title: "Falkaunsalpe"}).addTo(markerGroup);
-FalkaunsalpeMarker.bindPopup("<p>Falkaunsalpe </br> Temperatur 2.2°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/falkaunsalpe.png' alt='Falkaunsalpe' />");
+FalkaunsalpeMarker.bindPopup("<p>Falkaunsalpe </br> Temperatur 2.2°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/falkaunsalpe.png' >Mehr Wetterdaten</a></p>");
 
 let FranzSennHütteHorntalerSpitzlMarker = L.marker(FranzSennHütteHorntalerSpitzl, {title: "Franz-Senn-Hütte Horntaler Spitzl"}).addTo(markerGroup);
-FranzSennHütteHorntalerSpitzlMarker.bindPopup("<p>Franz-Senn-Hütte Horntaler Spitzl </br> Temperatur 4.3°C </br> 25.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/franz_senn_huette.png' alt='Franz-Senn-Hütte Horntaler Spitzl' />");
+FranzSennHütteHorntalerSpitzlMarker.bindPopup("<p>Franz-Senn-Hütte Horntaler Spitzl </br> Temperatur 4.3°C </br> 25.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/franz_senn_huette.png' >Mehr Wetterdaten</a></p>");
 
 let FranzSennHütteKlHorntalMarker = L.marker(FranzSennHütteKlHorntal, {title: "Franz-Senn-Hütte Kl Horntal"}).addTo(markerGroup);
-FranzSennHütteKlHorntalMarker.bindPopup("<p>Franz-Senn-Hütte Kl Horntal </br> Temperatur 5.5°C </br> 25.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/franz_senn_huette.png' alt='Franz-Senn-Hütte Kl Horntal' />");
+FranzSennHütteKlHorntalMarker.bindPopup("<p>Franz-Senn-Hütte Kl Horntal </br> Temperatur 5.5°C </br> 25.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/franz_senn_huette.png' >Mehr Wetterdaten</a></p>");
 
 let LampsenspitzeSchneestationMarker = L.marker(LampsenspitzeSchneestation, {title: "Lampsenspitze Schneestation"}).addTo(markerGroup);
-LampsenspitzeSchneestationMarker.bindPopup("<p>Lampsenspitze Schneestation </br> Temperatur 1.7°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/lampsenspitze.png' alt='Lampsenspitze Schneestation' />");
+LampsenspitzeSchneestationMarker.bindPopup("<p>Lampsenspitze Schneestation </br> Temperatur 1.7°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/lampsenspitze.png' >Mehr Wetterdaten</a></p>");
 
 let LampsenspitzeWindstationMarker = L.marker(LampsenspitzeWindstation, {title: "Lampsenspitze Windstation"}).addTo(markerGroup);
-LampsenspitzeWindstationMarker.bindPopup("<p>Lampsenspitze Windstation </br> Temperatur -0.8°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/lampsenspitze.png' alt='Lampsenspitze Windstation' />");
+LampsenspitzeWindstationMarker.bindPopup("<p>Lampsenspitze Windstation </br> Temperatur -0.8°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/lampsenspitze.png' >Mehr Wetterdaten</a></p>");
 
 let RoterSchrofenMarker = L.marker(RoterSchrofen, {title: "Roter Schrofen"}).addTo(markerGroup);
-RoterSchrofenMarker.bindPopup("<p>Roter Schrofen </br> Temperatur -1°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/falkaunsalpe.png' alt='Roter Schrofen' />");
+RoterSchrofenMarker.bindPopup("<p>Roter Schrofen </br> Temperatur -1°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/falkaunsalpe.png' >Mehr Wetterdaten</a></p>");
 
 let SchlickerAlmMarker = L.marker(SchlickerAlm, {title: "Schlicker Alm"}).addTo(markerGroup);
-SchlickerAlmMarker.bindPopup("<p>Schlicker Alm </br> Temperatur 6.5°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/schlickeralm.png' alt='Schlicker Alm' />");
+SchlickerAlmMarker.bindPopup("<p>Schlicker Alm </br> Temperatur 6.5°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/schlickeralm.png' >Mehr Wetterdaten</a></p>");
 
 let SeirlöcherKogelMarker = L.marker(SeirlöcherKogel, {title: "Seirlöcher Kogel"}).addTo(markerGroup);
-SeirlöcherKogelMarker.bindPopup("<p>Seirlöcher Kogel </br> Temperatur 0°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/seirloecherkogel.png' alt='Seirlöcher Kogel' />");
+SeirlöcherKogelMarker.bindPopup("<p>Seirlöcher Kogel </br> Temperatur 0°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/seirloecherkogel.png' >Mehr Wetterdaten</a></p>");
 
 let LämmerbichlalmMarker = L.marker(Lämmerbichlalm, {title: "Lämmerbichlalm"}).addTo(markerGroup);
-LämmerbichlalmMarker.bindPopup("<p>Lämmerbichlalm </br> Temperatur 3°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/laemmerbichlalm.png' alt='Lämmerbichlalm' />");
+LämmerbichlalmMarker.bindPopup("<p>Lämmerbichlalm </br> Temperatur 3°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/laemmerbichlalm.png' >Mehr Wetterdaten</a></p>");
 
 let RastkogelWindstationMarker = L.marker(RastkogelWindstation, {title: "Rastkogel Windstation"}).addTo(markerGroup);
-RastkogelWindstationMarker.bindPopup("<p>Rastkogel Windstation </br> Temperatur 0.1°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/laemmerbichlalm.png' alt='Rastkogel Windstation' />");
+RastkogelWindstationMarker.bindPopup("<p>Rastkogel Windstation </br> Temperatur 0.1°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/laemmerbichlalm.png' >Mehr Wetterdaten</a></p>");
 
 let SonntagsköpflMarker = L.marker(Sonntagsköpfl, {title: "Sonntagsköpfl"}).addTo(markerGroup);
-SonntagsköpflMarker.bindPopup("<p>Sonntagsköpfl </br> Temperatur 1.2°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/sonntagskoepfl.png' alt='Sonntagsköpfl' />");
+SonntagsköpflMarker.bindPopup("<p>Sonntagsköpfl </br> Temperatur 1.2°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/sonntagskoepfl.png' >Mehr Wetterdaten</a></p>");
 
 let SonntagsköpflWindstationMarker = L.marker(SonntagsköpflWindstation, {title: "Sonntagsköpfl Windstation"}).addTo(markerGroup);
-SonntagsköpflWindstationMarker.bindPopup("<p>Sonntagsköpfl Windstation </br> Temperatur 3.3°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/sonntagskoepfl.png' alt='Sonntagsköpfl Windstation' />");
+SonntagsköpflWindstationMarker.bindPopup("<p>Sonntagsköpfl Windstation </br> Temperatur 3.3°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/sonntagskoepfl.png' >Mehr Wetterdaten</a></p>");
 
 let TuxerjochSchneestationMarker = L.marker(TuxerjochSchneestation, {title: "Tuxerjoch Schneestation"}).addTo(markerGroup);
-TuxerjochSchneestationMarker.bindPopup("<p>Tuxerjoch Schneestation </br> Temperatur 6°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/tuxerjoch.png' alt='Tuxerjoch Schneestation' />");
+TuxerjochSchneestationMarker.bindPopup("<p>Tuxerjoch Schneestation </br> Temperatur 6°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/tuxerjoch.png' >Mehr Wetterdaten</a></p>");
 
 let TuxerjochWindstationMarker = L.marker(TuxerjochWindstation, {title: "Tuxerjoch Windstation"}).addTo(markerGroup);
-TuxerjochWindstationMarker.bindPopup("<p>Tuxerjoch Windstation </br> Temperatur 1.5°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/tuxerjoch.png' alt='Tuxerjoch Windstation' />");
+TuxerjochWindstationMarker.bindPopup("<p>Tuxerjoch Windstation </br> Temperatur 1.5°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/tuxerjoch.png' >Mehr Wetterdaten</a></p>");
 
 let WandspitzeSchneestationMarker = L.marker(WandspitzeSchneestation, {title: "Wandspitze Schneestation"}).addTo(markerGroup);
-WandspitzeSchneestationMarker.bindPopup("<p>Wandspitze Schneestation </br> Temperatur 1.3°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/wandspitze.png' alt='Wandspitze Schneestation' />");
+WandspitzeSchneestationMarker.bindPopup("<p>Wandspitze Schneestation </br> Temperatur 1.3°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/wandspitze.png' >Mehr Wetterdaten</a></p>");
 
 let WandspitzeWindstationMarker = L.marker(WandspitzeWindstation, {title: "Wandspitze Windstation"}).addTo(markerGroup);
-WandspitzeWindstationMarker.bindPopup("<p>Wandspitze Windstation </br> Temperatur -0.3°C </br> 26.04.2018</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/wandspitze.png' alt='Wandspitze Windstation' />");
+WandspitzeWindstationMarker.bindPopup("<p>Wandspitze Windstation </br> Temperatur -0.3°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/wandspitze.png' >Mehr Wetterdaten</a></p>");
 
 
 
