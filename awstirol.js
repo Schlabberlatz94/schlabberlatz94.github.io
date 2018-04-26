@@ -1,10 +1,10 @@
-
-let myMap = L.map("mapdiv"); //http://leafletjs.com/reference-1.3.0.html#map-l-map
+// Zweierteam Marianne und Jan
+let myMap = L.map("mapdiv"); 
 let markerGroup = L.featureGroup();
 let myLayers = {
     geolandbasemap : L.tileLayer("https://{s}.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png", {
-        subdomains : ["maps","maps1","maps2","maps3","maps4"], //http://leafletjs.com/reference-1.3.0.html#tilelayer-subdomains
-        attribution : "Datenquelle: <a href='https://www.basemap.at'>basemap.at</a>", //http://leafletjs.com/reference-1.3.0.html#layer-attribution
+        subdomains : ["maps","maps1","maps2","maps3","maps4"], 
+        attribution : "Datenquelle: <a href='https://www.basemap.at'>basemap.at</a>",
     }
 ),
     bmapoverlay : L.tileLayer("https://{s}.wien.gv.at/basemap/bmapoverlay/normal/google3857/{z}/{y}/{x}.png", { 
@@ -18,10 +18,10 @@ let myLayers = {
     }
 ),
 }
-myMap.addLayer(myLayers.geolandbasemap); //http://leafletjs.com/reference-1.3.0.html#layergroup-addlayer
+myMap.addLayer(myLayers.geolandbasemap); 
 myMap.addLayer(markerGroup);
 
-let myMapControl = L.control.layers({ //http://leafletjs.com/reference-1.3.0.html#control-layers-l-control-layers
+let myMapControl = L.control.layers({ 
     "basemap.at Grundkarte" : myLayers.geolandbasemap,
     "basemap.at Overlay" : myLayers.bmapoverlay,
     "basemap. at Orthofoto" : myLayers.bmaporthofoto30cm, 
@@ -32,21 +32,14 @@ let myMapControl = L.control.layers({ //http://leafletjs.com/reference-1.3.0.htm
     collapsed: false
 }); 
 
-myMap.addControl(myMapControl); //http://leafletjs.com/reference-1.3.0.html#map-addcontrol
-
-myMap.setView([47.267,11.383], 11); //http://leafletjs.com/reference-1.3.0.html#map-setview
-
+myMap.addControl(myMapControl); 
 
 L.control.scale({
     imperial: false, 
     maxWidth: 200, 
     position: "bottomleft"
 }).addTo(myMap)
-
-// verwendete Methode: http://leafletjs.com/reference-1.3.0.html#control-scale-l-control-scale
-// verwendete Optionen: http://leafletjs.com/reference-1.3.0.html#control-scale-maxwidth
-// http://leafletjs.com/reference-1.3.0.html#control-scale-metric
-// http://leafletjs.com/reference-1.3.0.html#control-scale-position
+// Erstellt Maßstab
 
 const Gehrenspitze = [47.387131, 11.133717];
 const Hafelekar = [47.312079, 11.383623];
@@ -79,7 +72,6 @@ const TuxerjochSchneestation = [47.093149, 11.648053];
 const TuxerjochWindstation = [47.089717, 11.648987];
 const WandspitzeSchneestation = [47.121858, 11.661969];
 const WandspitzeWindstation = [47.120752, 11.658062];
-
 
     
 const markerOptions = {
@@ -181,18 +173,4 @@ let WandspitzeWindstationMarker = L.marker(WandspitzeWindstation, {title: "Wands
 WandspitzeWindstationMarker.bindPopup("<p>Wandspitze Windstation </br> Temperatur -0.3°C </br> 26.04.2018</br><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/wandspitze.png' >Mehr Wetterdaten</a></p>");
 
 
-
-
-let patscherkoflMarker = L.marker(patscherkofl, {title: "Patscherkofel"}).addTo(markerGroup);
-patscherkoflMarker.bindPopup("<p>Patscherkofl von der Nordkette aus</p><img style='width:200px' src='https://apps.tirol.gv.at/luft/nordkette.jpg' alt='Patscherkofel' />");
-
-
-
-
-
-
-
-
-
-
-myMap.fitBounds(markerGroup.getBounds()); // Zentriert die drei Marker in einem neuen Ausschnitt
+myMap.fitBounds(markerGroup.getBounds()); // Zentriert die Marker in einem neuen Ausschnitt
