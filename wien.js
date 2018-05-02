@@ -44,7 +44,8 @@ let myMapControl = L.control.layers({ //http://leafletjs.com/reference-1.3.0.htm
     "basemap. at Orthofoto" : myLayers.bmaporthofoto30cm, 
 },{
     "basemap.at Overlay" : myLayers.bmapoverlay,
-    "Stadtspaziergang Wien": wienGroup,
+    "Stadtspaziergang Wien": wienGroup, 
+  
     
 },{
     collapsed: false
@@ -66,16 +67,33 @@ L.control.scale({
 // http://leafletjs.com/reference-1.3.0.html#control-scale-metric
 // http://leafletjs.com/reference-1.3.0.html#control-scale-position
 
-console.log("Wien Data: ",wiendata); 
+async function addGeojson(url) {
+    // console.log("Url wird geladen: ", url);
+    const response = await fetch(url);
+    // console.log("Response ", response);
+    const wiendata = await response.json();
+    console.log("GeoJson: ", wiendata);
+    const geojson = L.geoJSON(wiendata, {
+        style: function(feature) {
+            return { color: "#ff0000" };
+        },
+        pointToLayer: function(geoJsonPoint, latlng) {
+                return L.marker(latlng, {
+                    icon: L.icon({
+                        iconUrl: 'sight-2.png'
+                    })
+                });
+        }
+    });
+    wienGroup.addLayer(geojson);
+    myMap.fitBounds(wienGroup.getBounds());
+
+}
+
+const url = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&srsName=EPSG:4326&outputFormat=json&typeName=ogdwien:SPAZIERPUNKTOGD,ogdwien:SPAZIERLINIEOGD"
+
+addGeojson(url);
 
 myMap.addLayer(wienGroup);
-let geojson = L.geoJSON(wiendata).addTo(wienGroup);
-geojson.bindPopup(function(layer) {
-        const prop = layer.feature.properties;
-        const popupText = `<h1>${prop.NAME}</h1>
-        <p>Informationen: ${prop.BEMERKUNG}</p>`;
-        return popupText;
-    
-});
-myMap.fitBounds(wienGroup.getBounds());
+
 
