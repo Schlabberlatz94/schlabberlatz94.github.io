@@ -1,6 +1,6 @@
 
 let myMap = L.map("mapdiv"); //http://leafletjs.com/reference-1.3.0.html#map-l-map
-const wienGroup = L.featureGroup();
+const sightsGroup = L.featureGroup();
 let myLayers = {
     osm : L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"), //http://leafletjs.com/reference-1.3.0.html#tilelayer-l-tilelayer
         subdomains : ["a","b","c"], 
@@ -44,7 +44,7 @@ let myMapControl = L.control.layers({ //http://leafletjs.com/reference-1.3.0.htm
     "basemap. at Orthofoto" : myLayers.bmaporthofoto30cm, 
 },{
     "basemap.at Overlay" : myLayers.bmapoverlay,
-    "Stadtspaziergang Wien": wienGroup, 
+    "Sehenswürdigkeiten Wien": sightsGroup, 
   
     
 },{
@@ -71,9 +71,9 @@ async function addGeojson(url) {
     // console.log("Url wird geladen: ", url);
     const response = await fetch(url);
     // console.log("Response ", response);
-    const wiendata = await response.json();
-    console.log("GeoJson: ", wiendata);
-    const geojson = L.geoJSON(wiendata, {
+    const sightsdata = await response.json();
+    console.log("GeoJson: ", sightsdata);
+    const geojson = L.geoJSON(sightsdata, {
         style: function(feature) {
             return { color: "#ff0000" };
         },
@@ -85,15 +85,15 @@ async function addGeojson(url) {
                 });
         }
     });
-    wienGroup.addLayer(geojson);
-    myMap.fitBounds(wienGroup.getBounds());
+    sightsGroup.addLayer(geojson);
+    myMap.fitBounds(sightsGroup.getBounds());
 
 }
 
-const url = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&srsName=EPSG:4326&outputFormat=json&typeName=ogdwien:SPAZIERPUNKTOGD,ogdwien:SPAZIERLINIEOGD"
+const url = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json"
 
 addGeojson(url);
 
-myMap.addLayer(wienGroup);
+myMap.addLayer(sightsGroup);
 
 
