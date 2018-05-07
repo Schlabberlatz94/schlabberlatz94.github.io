@@ -1,5 +1,4 @@
-const sightsdata =
-{
+const sightsdata = {
     "type": "FeatureCollection",
     "totalFeatures": 63,
     "features": [

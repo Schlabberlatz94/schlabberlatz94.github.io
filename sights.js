@@ -67,6 +67,8 @@ L.control.scale({
 // http://leafletjs.com/reference-1.3.0.html#control-scale-metric
 // http://leafletjs.com/reference-1.3.0.html#control-scale-position
 
+
+
 async function addGeojson(url) {
     // console.log("Url wird geladen: ", url);
     const response = await fetch(url);
@@ -85,6 +87,13 @@ async function addGeojson(url) {
                 });
         }
     });
+	const popup = geojson.bindPopup(function(layer) {
+        const props = layer.feature.properties;
+        const popupText = `<h1>${props.NAME}</h1>
+        <p>Informationen unter: ${props.WEITERE_INF}</p>`;
+        return popupText;
+    
+});
     sightsGroup.addLayer(geojson);
     myMap.fitBounds(sightsGroup.getBounds());
 
@@ -95,5 +104,3 @@ const url = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&ve
 addGeojson(url);
 
 myMap.addLayer(sightsGroup);
-
-

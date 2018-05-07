@@ -1,5 +1,4 @@
-const citybike =
-{
+const citybikedata = {
     "type": "FeatureCollection",
     "totalFeatures": 121,
     "features": [
