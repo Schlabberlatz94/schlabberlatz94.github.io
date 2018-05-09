@@ -1,6 +1,8 @@
 
 let myMap = L.map("mapdiv"); //http://leafletjs.com/reference-1.3.0.html#map-l-map
-const citybikeGroup = L.featureGroup();
+
+const citybikeGroup = L.markerClusterGroup();
+
 let myLayers = {
     osm : L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"), //http://leafletjs.com/reference-1.3.0.html#tilelayer-l-tilelayer
         subdomains : ["a","b","c"], 
@@ -45,7 +47,8 @@ let myMapControl = L.control.layers({ //http://leafletjs.com/reference-1.3.0.htm
 },{
     "basemap.at Overlay" : myLayers.bmapoverlay,
     "City Bike Wien": citybikeGroup, 
-  
+    
+   
     
 },{
     collapsed: false
@@ -69,9 +72,10 @@ L.control.scale({
 
 async function addGeojson(url) {
     // console.log("Url wird geladen: ", url);
-    const response = await fetch(url);
+    const response = await fetch(url); //fetch holt Variable aus Internet
     // console.log("Response ", response);
-    const citybikedata = await response.json();
+    const citybikedata = await response.json(); 
+    //macht eine JSON Struktur
     console.log("GeoJson: ", citybikedata);
     const geojson = L.geoJSON(citybikedata, {
         style: function(feature) {
@@ -85,12 +89,18 @@ async function addGeojson(url) {
                 });
         }
     });
-	const popup = geojson.bindPopup(function(layer) {
+	geojson.bindPopup(function(layer) {
         const props = layer.feature.properties;
         const popupText = `<h1>${props.STATION}</h1>`;
         return popupText;
     
 });
+    var hash = new L.Hash(myMap);
+    myMap.addControl( new L.Control.Search({
+        layer: citybikeGroup,
+        propertyName: 'STATION'
+    }) );
+
     citybikeGroup.addLayer(geojson);
     myMap.fitBounds(citybikeGroup.getBounds());
 	
