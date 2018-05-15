@@ -27,16 +27,16 @@
 
 // Overlay controls zum unabhängigem Ein-/Ausschalten der Route und Marker hinzufügen
 
-let myMap = L.map("mapdiv"); //http://leafletjs.com/reference-1.3.0.html#map-l-map
-const wienGroup = L.featureGroup();
+let myMap = L.map("mapdiv"); 
+let markerGroup = L.featureGroup();
 let myLayers = {
-    osm : L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"), //http://leafletjs.com/reference-1.3.0.html#tilelayer-l-tilelayer
+    osm : L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"), 
         subdomains : ["a","b","c"], 
         attribution : "Datenquelle: <a href=openstreetmap.org</a>", 
 
     geolandbasemap : L.tileLayer("https://{s}.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png", {
-        subdomains : ["maps","maps1","maps2","maps3","maps4"], //http://leafletjs.com/reference-1.3.0.html#tilelayer-subdomains
-        attribution : "Datenquelle: <a href='https://www.basemap.at'>basemap.at</a>", //http://leafletjs.com/reference-1.3.0.html#layer-attribution
+        subdomains : ["maps","maps1","maps2","maps3","maps4"], 
+        attribution : "Datenquelle: <a href='https://www.basemap.at'>basemap.at</a>", 
     }
 ),
     bmapoverlay : L.tileLayer("https://{s}.wien.gv.at/basemap/bmapoverlay/normal/google3857/{z}/{y}/{x}.png", { 
@@ -56,25 +56,32 @@ let myLayers = {
 		attribution : "Datenquelle: <a href='https://www.kartetirol.at'>kartetirol.at</a>",
 	}
 ), 
+	elektronischeKarteOrtho : L.tileLayer("http://wmts.kartetirol.at/wmts/gdi_ortho/GoogleMapsCompatible/{z}/{x}/{y}.jpeg80", {
+		attribution : "Datenquelle: <a href='https://www.kartetirol.at'>kartetirol.at</a>",
+	}
+), 
 }
-myMap.addLayer(myLayers.geolandbasemap); //http://leafletjs.com/reference-1.3.0.html#layergroup-addlayer
+myMap.addLayer(myLayers.elektronischeKarteSommer); 
+myMap.addLayer(markerGroup);
 
-let myMapControl = L.control.layers({ //http://leafletjs.com/reference-1.3.0.html#control-layers-l-control-layers
+let myMapControl = L.control.layers({ 
     "Openstreetmap" : myLayers.osm,
     "basemap.at Grundkarte" : myLayers.geolandbasemap,  
 	"Elektronische Karte Sommer" : myLayers.elektronischeKarteSommer,
 	"Elektronische Karte Winter" : myLayers.elektronischeKarteWinter,
+	"Elektronische Karte Orthophoto" : myLayers.elektronischeKarteOrtho,
 },{
     "basemap.at Overlay" : myLayers.bmapoverlay,
 	"Nomenklatur Overlay" : myLayers.elektronischeKarteNomenklatur,
+	"Start und Ziel" : markerGroup
         
 },{
     collapsed: false
-}); // Sollte eigentlich darüber gehen http://leafletjs.com/reference-1.3.0.html#control-layers-collapsed
+}); 
 
-myMap.addControl(myMapControl); //http://leafletjs.com/reference-1.3.0.html#map-addcontrol
+myMap.addControl(myMapControl); 
 
-myMap.setView([47.14237,10.57026], 11); //http://leafletjs.com/reference-1.3.0.html#map-setview
+myMap.setView([47.14237,10.57026], 11); 
 
 
 L.control.scale({
@@ -82,3 +89,42 @@ L.control.scale({
     maxWidth: 200, 
     position: "bottomleft"
 }).addTo(myMap)
+
+
+const start = [47.136961, 10.566790]; 
+const ziel = [47.009754,10.288611];
+
+
+let startMarker = L.marker(start, {
+	title: "start",
+    icon: L.icon({
+          iconUrl: 'images/start.png'
+})
+}).addTo(markerGroup);
+startMarker.bindPopup("<p>Der Start in Landeck</p><img style='width:100px'/> <a href='https://de.wikipedia.org/wiki/Landeck_(Tirol)' >Infos</a>");
+
+let zielMarker = L.marker(ziel, {
+	title: "ziel",
+	icon: L.icon({
+          iconUrl: 'images/finish.png'
+})
+}).addTo(markerGroup);
+		  
+zielMarker.bindPopup("<p>Das Ziel in Ischgl</p><img style='width:100px'/> <a href='https://de.wikipedia.org/wiki/Ischgl' >Infos</a>");
+
+//Etappe
+let geojson = L.geoJSON(etappendata).addTo(markerGroup);
+geojson.bindPopup(function(layer){
+	console.log("Layer for Popup:", layer.feature.geometry);
+	const props = layer.feature.geometry;
+	const popupText =`<p>${props.coordinates}</p>`;
+	return popupText;
+});
+
+myMap.addControl(myMapControl);
+
+myMap.fitBounds(markerGroup.getBounds());
+
+
+
+
