@@ -65,12 +65,47 @@ L.control.scale({
 }).addTo(karte);
 
 // asynchrone Funktion zum Laden eines GeoJSON Layers
-async function ladeGeojsonLayer(url) {
-    const response = await fetch(url);
+async function ladeGeojsonLayer(koffer) {
+    console.log(koffer);
+    const response = await fetch(koffer.json);
     const response_json = await response.json();
 
+   
     // GeoJSON Geometrien hinzufügen und auf Ausschnitt zoomen
-    const geojsonObjekt = L.geoJSON(response_json);
+    const geojsonObjekt = L.geoJSON(response_json, {
+        onEachFeature : function(feature, layer) {
+            //console.log(feature)
+            //console.log(layer)
+            //console.log(feature.properties);
+         let popup = "<h3>Attribute</h3>";
+         for (attribut in feature.properties) {
+             let wert = feature.properties[attribut];
+            if (wert && wert.toString().startsWith("http:")) {
+                popup += `${attribut}: <a href="${wert}">Weblink</a><br/>`;
+            } else {
+             //console.log(attribut,feature.properties [attribut])
+             popup += `${attribut}: ${wert}<br/>`;
+         }
+        }
+            //console.log(popup)
+         layer.bindPopup(popup, {
+             maxWidth : 600,
+         });
+        },
+        pointToLayer : function(geoJsonPoint, latlng) {
+            if (koffer.icon) {
+                return L.marker(latlng, {
+                    icon : L.icon({
+                        iconUrl : koffer.icon,
+                        iconAnchor : [16,32],
+                        popupAnchor : [0,-32],
+                    })
+                })
+            } else {
+                return L.marker(latlng);
+            }
+        }
+    });
     geojsonGruppe.addLayer(geojsonObjekt);
     karte.fitBounds(geojsonGruppe.getBounds());
 }
@@ -86,17 +121,20 @@ wienDatensaetze.sort(function(a,b) {
 })
 
 // den GeoJSON Layer für Grillplätze laden
-ladeGeojsonLayer(wienDatensaetze[8].json);
+ladeGeojsonLayer(wienDatensaetze[8]);
 
 let layerAuswahl = document.getElementById("layerAuswahl");
-for (datensatz of wienDatensaetze) {
-    layerAuswahl.innerHTML += `<option value="${datensatz.json}">${datensatz.titel}</option>`
+for (let i=0; i<wienDatensaetze.length; i++) {
+    layerAuswahl.innerHTML += `<option value="${i}">${wienDatensaetze[i].titel}</option>`
     //console.log(datensatz.titel)
     //console.log(datensatz.json)
+    console.log(i,wienDatensaetze[i].titel)
 }
 
 layerAuswahl.onchange = function(evt) {
     geojsonGruppe.clearLayers();
-    ladeGeojsonLayer(evt.target.value);
+    let i = evt.target.value;
+    console.log(i,wienDatensaetze[i])
+   ladeGeojsonLayer(wienDatensaetze[i]);
 }
 

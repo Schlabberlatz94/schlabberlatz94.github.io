@@ -27,7 +27,9 @@
 
 // Overlay controls zum unabhängigem Ein-/Ausschalten der Route und Marker hinzufügen
 
-let myMap = L.map("mapdiv"); 
+let myMap = L.map("mapdiv", {
+    fullscreenControl: true
+}); 
 let markerGroup = L.featureGroup();
 let myLayers = {
     osm : L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"), 
@@ -60,9 +62,12 @@ let myLayers = {
 		attribution : "Datenquelle: <a href='https://www.kartetirol.at'>kartetirol.at</a>",
 	}
 ), 
-}
+};
+
+
 myMap.addLayer(myLayers.elektronischeKarteSommer); 
 myMap.addLayer(markerGroup);
+
 
 let myMapControl = L.control.layers({ 
     "Openstreetmap" : myLayers.osm,
@@ -113,17 +118,31 @@ let zielMarker = L.marker(ziel, {
 zielMarker.bindPopup("<p>Das Ziel in Ischgl</p><img style='width:100px'/> <a href='https://de.wikipedia.org/wiki/Ischgl' >Infos</a>");
 
 //Etappe
-let geojson = L.geoJSON(etappendata).addTo(markerGroup);
-geojson.bindPopup(function(layer){
-	console.log("Layer for Popup:", layer.feature.geometry);
-	const props = layer.feature.geometry;
-	const popupText =`<p>${props.coordinates}</p>`;
-	return popupText;
-});
+//let geojson = L.geoJSON(etappendata).addTo(markerGroup);
+//geojson.bindPopup(function(layer){
+//	console.log("Layer for Popup:", layer.feature.geometry);
+//	const props = layer.feature.geometry;
+//	const popupText =`<p>${props.coordinates}</p>`;
+//	return popupText;
+//});
 
-myMap.addControl(myMapControl);
+// Etappe über gpx Datei
+let gpxTrack = new L.GPX("data/etappe29.gpx", {
+    async : true,
+}).addTo(markerGroup);
+gpxTrack.on("loaded", function(evt) { 
+    console.log("get_distance",evt.target.get_distance().toFixed(0))
+    console.log("get_elevation_min",evt.target.get_elevation_min().toFixed(0))
+    console.log("get_elevation_max",evt.target.get_elevation_max().toFixed(0))
+    console.log("get_elevation_gain",evt.target.get_elevation_gain().toFixed(0))
+    console.log("get_elevation_loss",evt.target.get_elevation_loss().toFixed(0))
+    let laenge = evt.target.get_distance().toFixed(0);
+    document.getElementById("laenge").innerHTML = laenge;
+    myMap.fitBounds(evt.target.getBounds());
+})
 
-myMap.fitBounds(markerGroup.getBounds());
+
+
 
 
 
