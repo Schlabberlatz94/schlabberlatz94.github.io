@@ -127,7 +127,7 @@ zielMarker.bindPopup("<p>Das Ziel in Ischgl</p><img style='width:100px'/> <a hre
 //});
 
 // Etappe über gpx Datei
-let gpxTrack = new L.GPX("data/etappe29.gpx", {
+let gpxTrack = new L.GPX('data/etappe29.gpx', {
     async : true,
 }).addTo(markerGroup);
 gpxTrack.on("loaded", function(evt) { 
@@ -138,12 +138,13 @@ gpxTrack.on("loaded", function(evt) {
     console.log("get_elevation_loss",evt.target.get_elevation_loss().toFixed(0))
     let laenge = evt.target.get_distance().toFixed(0);
     document.getElementById("laenge").innerHTML = laenge;
-    myMap.fitBounds(evt.target.getBounds());
+    let tief = evt.target.get_elevation_min().toFixed(0);
+    document.getElementById("tiefster Punkt").innerHTML = tief;
+    let hoch = evt.target.get_elevation_max().toFixed(0);
+    document.getElementById("höchster Punkt").innerHTML = hoch;
+    let aufstieg = evt.target.get_elevation_gain().toFixed(0);
+    document.getElementById("Aufstieg").innerHTML = aufstieg;
+    let abstieg = evt.target.get_elevation_loss().toFixed(0);
+    document.getElementById("Abstieg").innerHTML = abstieg;
+    myMap.fitBounds(evt.target.getBounds())
 })
-
-
-
-
-
-
-
