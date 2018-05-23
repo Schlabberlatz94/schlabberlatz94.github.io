@@ -1,36 +1,9 @@
-/*
-    Vorbereitung: GPX Track herunterladen und nach GeoJSON konvertieren
-    -------------------------------------------------------------------
-    Datenquelle https://www.data.gv.at/suche/?search-term=bike+trail+tirol&searchIn=catalog
-    Download Einzeletappen / Zur Ressource ...
-    Alle Dateien im unterverzeichnis data/ ablegen
-    Die .gpx Datei der eigenen Etappe als etappe00.gpx speichern
-    Die .gpx Datei über https://mapbox.github.io/togeojson/ in .geojson umwandeln und als etappe00.geojson speichern
-    Die etappe00.geojson Datei in ein Javascript Objekt umwandeln und als etappe00.geojson.js speichern
-
-    -> statt 00 natürlich die eigene Etappe (z.B. 01,02, ...25)
-*/
-
-// eine neue Leaflet Karte definieren
-
-// Grundkartenlayer mit OSM, basemap.at, Elektronische Karte Tirol (Sommer, Winter, Orthophoto jeweils mit Beschriftung) über L.featureGroup([]) definieren
-// WMTS URLs siehe https://www.data.gv.at/katalog/dataset/land-tirol_elektronischekartetirol
-
-// Maßstab metrisch ohne inch
-
-// Start- und Endpunkte der Route als Marker mit Popup, Namen, Wikipedia Link und passenden Icons für Start/Ziel von https://mapicons.mapsmarker.com/
-
-// GeoJSON Track als Linie in der Karte einzeichnen und auf Ausschnitt zoomen
-// Einbauen nicht über async, sondern über ein L.geoJSON() mit einem Javascript Objekt (wie beim ersten Stadtspaziergang Wien Beispiel)
-
-// Baselayer control für OSM, basemap.at, Elektronische Karte Tirol hinzufügen
-
-// Overlay controls zum unabhängigem Ein-/Ausschalten der Route und Marker hinzufügen
-
 let myMap = L.map("mapdiv", {
     fullscreenControl: true
 }); 
 let markerGroup = L.featureGroup();
+let overlaySteigung = L.featureGroup().addTo(myMap);
+
 let myLayers = {
     osm : L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"), 
         subdomains : ["a","b","c"], 
@@ -64,7 +37,6 @@ let myLayers = {
 ), 
 };
 
-
 myMap.addLayer(myLayers.elektronischeKarteSommer); 
 myMap.addLayer(markerGroup);
 
@@ -78,10 +50,11 @@ let myMapControl = L.control.layers({
 },{
     "basemap.at Overlay" : myLayers.bmapoverlay,
 	"Nomenklatur Overlay" : myLayers.elektronischeKarteNomenklatur,
-	"Start und Ziel" : markerGroup
+    //"Start und Ziel" : markerGroup,
+    "Steigungslinie" : overlaySteigung,
         
 },{
-    collapsed: false
+    collapsed: true,
 }); 
 
 myMap.addControl(myMapControl); 
@@ -126,10 +99,17 @@ zielMarker.bindPopup("<p>Das Ziel in Ischgl</p><img style='width:100px'/> <a hre
 //	return popupText;
 //});
 
+//Höhenprofil
+let hoehenProfil = L.control.elevation({
+    position : "topright",
+    theme : "steelblue-theme",
+    collapsed : true, 
+}).addTo(myMap);
+
 // Etappe über gpx Datei
 let gpxTrack = new L.GPX('data/etappe29.gpx', {
     async : true,
-}).addTo(markerGroup);
+})//.addTo(markerGroup);
 gpxTrack.on("loaded", function(evt) { 
     console.log("get_distance",evt.target.get_distance().toFixed(0))
     console.log("get_elevation_min",evt.target.get_elevation_min().toFixed(0))
@@ -147,4 +127,59 @@ gpxTrack.on("loaded", function(evt) {
     let abstieg = evt.target.get_elevation_loss().toFixed(0);
     document.getElementById("Abstieg").innerHTML = abstieg;
     myMap.fitBounds(evt.target.getBounds())
-})
+});
+
+gpxTrack.on('addline', function(evt){
+    hoehenProfil.addData(evt.line);
+    console.log(evt.line);
+    console.log(evt.line.getLatLngs());
+    console.log(evt.line.getLatLngs()[0]);
+    console.log(evt.line.getLatLngs()[0].lat);
+    console.log(evt.line.getLatLngs()[0].lng);
+    console.log(evt.line.getLatLngs()[0].meta);
+    console.log(evt.line.getLatLngs()[0].meta.ele);
+
+         // Alle Segmente der Steigungslinie hinzufügen
+    let gpxLinie = evt.line.getLatLngs();
+    for (let i = 1; i < gpxLinie.length; i++) {
+        let p1 = gpxLinie[i-1];
+        let p2 = gpxLinie[i];
+        console.log(p1.lat,p1.lng,p2.lat, p2.lng);
+
+        // Entfernung zwischen den Punkten berechnen
+        let dist = myMap.distance(
+            [p1.lat,p1.lng],
+            [p2.lat,p2.lng]
+        );
+
+        //Höhenunterschied berechnen
+        let delta = p2.meta.ele - p1.meta.ele;
+
+        // Steigung in % berechnen
+        let proz = (delta > 0) ? (delta / dist * 100.0).toFixed(1) : 0;
+
+        // Bedingung ? Ausdruck1 : Ausdruck 2
+
+        console.log(p1.lat,p1.lng,p2.lat, p2.lng,dist,delta,proz);
+
+        let farbe = 
+            proz >  10  ? "#d73027" :
+            proz >  6   ? "#f46d43" :
+            proz >  2   ? "#fdae61" :
+            proz >  0   ? "#fee08b" :
+            proz > -2  ? "#d9ef8b" :
+            proz > -6  ? "#a6d96a" :
+            proz > -10 ? "#66bd63" :
+                        "#1a9850";
+        
+        let segment = L.polyline(
+            [
+                 [p1.lat,p1.lng], 
+                 [p2.lat,p2.lng],
+            ], {
+                color: farbe,
+                weight : 10 
+            }
+        ).addTo(overlaySteigung);
+    }
+});
